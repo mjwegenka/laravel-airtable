@@ -10,6 +10,7 @@ class AirtableApiClient implements ApiClient
     private $client;
 
     private $typecast;
+    private $username;
     private $base;
     private $table;
     private $delay;
@@ -20,8 +21,9 @@ class AirtableApiClient implements ApiClient
     private $pageSize = 100;
     private $maxRecords = 100;
 
-    public function __construct($base, $table, $access_token, $httpLogFormat = null, Client $client = null, $typecast = false, $delayBetweenRequests = 200000)
+    public function __construct($username, $base, $table, $access_token, $httpLogFormat = null, Client $client = null, $typecast = false, $delayBetweenRequests = 200000)
     {
+        $this->username = $username;
         $this->base = $base;
         $this->table = $table;
         $this->typecast = $typecast;
@@ -44,7 +46,7 @@ class AirtableApiClient implements ApiClient
     private function buildClient($access_token, $stack)
     {
         return new Client([
-            'base_uri' => 'https://api.airtable.com',
+            'base_uri' => 'https://v1.nocodeapi.com',
             'headers' => [
                 'Authorization' => "Bearer {$access_token}",
                 'content-type' => 'application/json',
@@ -192,7 +194,7 @@ class AirtableApiClient implements ApiClient
     protected function getEndpointUrl(?string $id = null): string
     {
         if ($id) {
-            $url = '/v0/~/~/~';
+            $url = '/' . $this->username . '/airtable?base=~&table=~&~';
 
             return Str::replaceArray('~', [
                 $this->base,
@@ -201,7 +203,7 @@ class AirtableApiClient implements ApiClient
             ], $url);
         }
 
-        $url = '/v0/~/~';
+        $url = '/' . $this->username . '/airtable/~/~';
 
         $url = Str::replaceArray('~', [
             $this->base,
