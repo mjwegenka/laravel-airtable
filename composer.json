@@ -6,7 +6,7 @@
         "airtable",
         "laravel"
     ],
-    "homepage": "https://github.com/tapp/laravel-airtable",
+    "homepage": "https://github.com/mjwegenka/laravel-airtable",
     "license": "MIT",
     "type": "library",
     "authors": [
