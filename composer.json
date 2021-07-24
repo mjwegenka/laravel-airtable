@@ -1,6 +1,6 @@
 {
-    "name": "tapp/laravel-airtable",
-    "description": "Laravel Airtable SDK",
+    "name": "mjwegenka/laravel-airtable",
+    "description": "Laravel Airtable SDK for NoCodeAPI",
     "keywords": [
         "tapp",
         "airtable",
